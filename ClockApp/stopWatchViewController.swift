@@ -12,7 +12,6 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     
     // MARK: Outlets
     
-    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var minuteLabel: UILabel!
@@ -25,38 +24,29 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     var seconds = 0
     var lappedTimes:[String] = []
     var timer = Timer()
-    //var counter = 0.0
-    //var isRunning = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.isHidden = true
         dots.isHidden = true
-        pauseButton.isHidden = true
-//        titleLabel.text = "\(counter)"
-//        playButton.isEnabled = true
-//        pauseButton.isEnabled = true
-//
 
         // Do any additional setup after loading the view.
     }
     
     // MARK: Methods of Stop Watch Functionality
     
-    @IBAction func btnPausee(_ sender: UIButton) {
-       // playButton.isHidden = false
-                  timer.invalidate()
-        
-        
-    }
-    
     @IBAction func btnPlay(_ sender: UIButton) {
-        playButton.isSelected = true
+        if playButton.isSelected == true{
+            playButton.isSelected = false
+             timer.invalidate()
+           
+            
+        }
+        else{
+            playButton.isSelected = true
+             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(count), userInfo: nil, repeats: true)
+        }
         
-      //  playButton.isHidden = true
-        
-        //pauseButton.isHidden = false
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(count), userInfo: nil, repeats: true)
        
     }
     @objc func count(){

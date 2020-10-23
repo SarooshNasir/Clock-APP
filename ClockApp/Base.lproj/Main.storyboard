@@ -32,29 +32,127 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcE-wC-oRM">
-                                <rect key="frame" x="20" y="136" width="374" height="63"/>
+                                <rect key="frame" x="20" y="77" width="374" height="63"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="50"/>
                                 <color key="textColor" red="0.40765067249999998" green="0.61787192089999998" blue="0.89108105959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eRF-QX-6S3">
+                                <rect key="frame" x="20" y="161" width="374" height="429"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="124" id="xCz-te-ScB" customClass="WorldClockTableViewCell" customModule="ClockApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="124"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xCz-te-ScB" id="IPp-q2-LNR">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-LV-MPz">
+                                                    <rect key="frame" x="20" y="11" width="334" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFd-nE-0oT">
+                                                    <rect key="frame" x="20" y="63" width="334" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="rFd-nE-0oT" id="Xrd-lR-Map"/>
+                                            <outlet property="timeZoneName" destination="1Zd-LV-MPz" id="lXo-Ah-12r"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="wOf-jU-O7j" id="wHX-Pq-yKH"/>
+                                    <outlet property="delegate" destination="wOf-jU-O7j" id="5VM-Y5-K7w"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlU-gR-yVp" customClass="RoundButton" customModule="ClockApp" customModuleProvider="target">
+                                <rect key="frame" x="177" y="598" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4268438041" green="0.5648793379" blue="0.85011500630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="globe" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="qQr-e8-kfp" kind="presentation" identifier="modelViewSegue" id="Z2d-5u-UIC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LcE-wC-oRM" firstAttribute="top" secondItem="WSS-J5-OaJ" secondAttribute="top" constant="136" id="86n-AZ-ke2"/>
+                            <constraint firstItem="LcE-wC-oRM" firstAttribute="top" secondItem="WSS-J5-OaJ" secondAttribute="top" constant="77" id="86n-AZ-ke2"/>
                             <constraint firstItem="WSS-J5-OaJ" firstAttribute="trailing" secondItem="LcE-wC-oRM" secondAttribute="trailing" constant="20" id="NwY-3I-H1v"/>
                             <constraint firstItem="LcE-wC-oRM" firstAttribute="leading" secondItem="WSS-J5-OaJ" secondAttribute="leading" constant="20" id="nfc-5b-QD8"/>
-                            <constraint firstItem="WSS-J5-OaJ" firstAttribute="bottom" secondItem="LcE-wC-oRM" secondAttribute="bottom" constant="488" id="soh-vh-gwp"/>
+                            <constraint firstItem="WSS-J5-OaJ" firstAttribute="bottom" secondItem="LcE-wC-oRM" secondAttribute="bottom" constant="547" id="soh-vh-gwp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WSS-J5-OaJ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Clock" image="clock" catalog="system" id="OEG-h8-TDw"/>
                     <connections>
+                        <outlet property="tblView" destination="eRF-QX-6S3" id="spE-rm-tH5"/>
                         <outlet property="timeLabel" destination="LcE-wC-oRM" id="NBF-oB-vUe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sej-qO-t05" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="782.60869565217399" y="831.52173913043487"/>
+        </scene>
+        <!--Time Zones Table View Controller-->
+        <scene sceneID="pET-6E-6qO">
+            <objects>
+                <tableViewController id="qQr-e8-kfp" customClass="TimeZonesTableViewController" customModule="ClockApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FPm-d5-Ybq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" showsCancelButton="YES" id="vro-yK-Kkm">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" textLabel="0GP-kd-scf" style="IBUITableViewCellStyleDefault" id="DXv-Fz-mLT">
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DXv-Fz-mLT" id="7Ez-UM-sXU">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0GP-kd-scf">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qQr-e8-kfp" id="MYz-rj-ral"/>
+                            <outlet property="delegate" destination="qQr-e8-kfp" id="8T3-dI-aj6"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchText" destination="vro-yK-Kkm" id="i6C-Qb-UJM"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a0b-7v-Lwl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1552" y="829"/>
         </scene>
         <!--StopWatch-->
         <scene sceneID="KSK-pB-hp9">
@@ -65,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27P-NP-J2I" customClass="RoundButton" customModule="ClockApp" customModuleProvider="target">
-                                <rect key="frame" x="154" y="580" width="70" height="70"/>
+                                <rect key="frame" x="177" y="603" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.45370429140256513" green="0.61444340650154161" blue="0.89280615482233505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,7 +178,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNw-IS-aHG">
-                                <rect key="frame" x="39" y="580" width="77" height="66"/>
+                                <rect key="frame" x="21" y="603" width="77" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Reset">
@@ -98,30 +196,6 @@
                                 <color key="textColor" red="0.4268438041" green="0.5648793379" blue="0.85011500630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4T-7O-h5p" customClass="RoundButton" customModule="ClockApp" customModuleProvider="target">
-                                <rect key="frame" x="232" y="580" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.4268438041" green="0.5648793379" blue="0.85011500630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                <state key="normal" image="pause"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="btnPausee:" destination="bhh-Dg-p6R" eventType="touchUpInside" id="goT-7E-1xz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zX-jI-sHb">
-                                <rect key="frame" x="310" y="578" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                <state key="normal" title="Lap">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnLap:" destination="bhh-Dg-p6R" eventType="touchUpInside" id="4XV-Sd-xRy"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAu-Br-vPT">
                                 <rect key="frame" x="60" y="232" width="295" height="340"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -163,6 +237,17 @@
                                 <color key="textColor" red="0.4268438041" green="0.5648793379" blue="0.85011500630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zX-jI-sHb">
+                                <rect key="frame" x="324" y="601" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <state key="normal" title="Lap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLap:" destination="bhh-Dg-p6R" eventType="touchUpInside" id="4XV-Sd-xRy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="Kni-xX-vY4"/>
@@ -171,7 +256,6 @@
                     <connections>
                         <outlet property="dots" destination="Rop-rJ-zjE" id="DzG-8k-uaQ"/>
                         <outlet property="minuteLabel" destination="ouc-0B-jBQ" id="iQy-cs-ZOH"/>
-                        <outlet property="pauseButton" destination="q4T-7O-h5p" id="Yjj-ck-Wxq"/>
                         <outlet property="playButton" destination="27P-NP-J2I" id="qdD-b2-pHb"/>
                         <outlet property="secondLabel" destination="KJA-md-3nG" id="GQl-bc-7xc"/>
                         <outlet property="tableView" destination="eAu-Br-vPT" id="ctQ-RD-61w"/>
@@ -205,6 +289,7 @@
     </scenes>
     <resources>
         <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="globe" catalog="system" width="128" height="121"/>
         <image name="pause" width="42" height="56"/>
         <image name="play" width="48" height="61"/>
         <image name="stopwatch" catalog="system" width="121" height="128"/>
