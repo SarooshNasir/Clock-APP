@@ -18,6 +18,7 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dots: UILabel!
+    @IBOutlet weak var laps: UIButton!
     // MARK: Variables
     var hours = 0
     var minutes = 0
@@ -29,6 +30,7 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
         super.viewDidLoad()
         titleLabel.isHidden = true
         dots.isHidden = true
+        laps.isEnabled = false
 
         // Do any additional setup after loading the view.
     }
@@ -36,9 +38,11 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     // MARK: Methods of Stop Watch Functionality
     
     @IBAction func btnPlay(_ sender: UIButton) {
+        laps.isEnabled = true
         if playButton.isSelected == true{
             playButton.isSelected = false
              timer.invalidate()
+            
            
             
         }
@@ -79,7 +83,7 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
                tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    func resetTimes(){
+    func resetTimes() {
         
         hours = 0
         minutes = 0
@@ -92,7 +96,7 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
         tableView.reloadData()
     }
     @IBAction func btnReset(_ sender: UIButton) {
-        
+        playButton.isSelected = false
        resetTimes()
 
     }

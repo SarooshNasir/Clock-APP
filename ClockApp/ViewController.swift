@@ -12,12 +12,15 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
     
     // MARK: Outlet for tableView
     @IBOutlet weak var tblView: UITableView!
-    
+    // MARK: Variables
+    var timer = Timer()
     var timeZonesToDisplay: [String] = []
     // MARK: Protocol Method
     func addTimeZone(timeZone: String) {
         timeZonesToDisplay.append(timeZone)
         tblView.reloadData()
+        //setting user default
+        setUserDefaults()
 
     }
     
@@ -30,10 +33,12 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WorldClockTableViewCell
         cell.timeZoneName.text = timeZonesToDisplay[indexPath.row]
+        //cell.timeZoneName.lineBreakMode = .byClipping
+        //cell.timeLabel.lineBreakMode = .byClipping
         return cell
        }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 100
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -44,6 +49,7 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
         if editingStyle == .delete{
             timeZonesToDisplay.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .middle)
+            setUserDefaults()
         }
     }
     
@@ -64,6 +70,18 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
         }
     }
     
+    // MARK: User Defaults
+    func setUserDefaults(){
+        UserDefaults.standard.set(timeZonesToDisplay, forKey: "WorldClocks")
+        UserDefaults.standard.synchronize()
+    }
+    func getUserDefaults() -> [String]{
+        if (UserDefaults.standard.value(forKey: "WorldClocks") != nil){
+            timeZonesToDisplay = UserDefaults.standard.value(forKey: "WorldClocks") as! [String]
+        }
+        return timeZonesToDisplay
+    }
+    
     
     
     
@@ -78,24 +96,27 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
     // MARK: Methods
     @objc func updateTimeLabel(){
          let formatter = DateFormatter()
-         formatter.timeStyle = .medium
+        formatter.timeStyle = .medium
          timeLabel.text = "\(formatter.string(from: clock.currentTime as Date))"
      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTimeLabel()
+        timeZonesToDisplay = getUserDefaults()
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTimeLabel), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateTimeLabel), name: UIApplication.willEnterForegroundNotification, object: nil)
+        timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
        
         
         // Do any additional setup after loading the view.
     }
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        //NotificationCenter.default.removeObserver(self)
+        timer.invalidate()
     }
  
 
