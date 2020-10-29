@@ -19,6 +19,8 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dots: UILabel!
     @IBOutlet weak var laps: UIButton!
+    @IBOutlet weak var reset: UIButton!
+    
     // MARK: Variables
     var hours = 0
     var minutes = 0
@@ -29,6 +31,8 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.isHidden = true
+        laps.isHidden = true
+        reset.isHidden = true
         dots.isHidden = true
         laps.isEnabled = false
 
@@ -38,12 +42,14 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     // MARK: Methods of Stop Watch Functionality
     
     @IBAction func btnPlay(_ sender: UIButton) {
+        laps.isHidden = false
+        reset.isHidden = false
         laps.isEnabled = true
         if playButton.isSelected == true{
             playButton.isSelected = false
              timer.invalidate()
             
-           
+        
             
         }
         else{
@@ -78,9 +84,10 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     
     @IBAction func btnLap(_ sender: UIButton) {
         let currentTime  = "\(hours):\(minutes):\(seconds)"
-        lappedTimes.append(currentTime)
+        tableView.reloadData()
+        lappedTimes.insert(currentTime, at: 0)
         let indexPath = IndexPath(row: lappedTimes.count-1, section: 0)
-               tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
     func resetTimes() {
@@ -90,9 +97,9 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
         seconds = 0
         lappedTimes = []
         timer.invalidate()
-        secondLabel.text = "0"
-        minuteLabel.text = "0"
-        titleLabel.text = "0"
+        secondLabel.text = "00"
+        minuteLabel.text = "00"
+        titleLabel.text = "00"
         tableView.reloadData()
     }
     @IBAction func btnReset(_ sender: UIButton) {
@@ -106,7 +113,8 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lapCell", for: indexPath)
-        cell.textLabel?.text = lappedTimes[indexPath.row]
+        cell.textLabel?.text = "# \(lappedTimes.count-indexPath.row)"
+        cell.detailTextLabel?.text = lappedTimes[indexPath.row]
         cell.selectionStyle = .none
         return cell
         
@@ -114,6 +122,7 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .lightGray
+        cell.detailTextLabel?.textColor = .lightGray
     }
     
     /*

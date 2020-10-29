@@ -96,7 +96,7 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
     // MARK: Methods
     @objc func updateTimeLabel(){
          let formatter = DateFormatter()
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
          timeLabel.text = "\(formatter.string(from: clock.currentTime as Date))"
      }
     

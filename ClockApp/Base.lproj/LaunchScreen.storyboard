@@ -14,7 +14,16 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1-1-150x150" translatesAutoresizingMaskIntoConstraints="NO" id="So8-Yi-oK8">
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="So8-Yi-oK8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NA4-iy-yEf"/>
+                            <constraint firstItem="So8-Yi-oK8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xDO-qF-oqj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +32,7 @@
             <point key="canvasLocation" x="-13.043478260869566" y="342.85714285714283"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1-1-150x150" width="150" height="150"/>
+    </resources>
 </document>

@@ -55,9 +55,9 @@ class TimeZonesTableViewController: UITableViewController , UISearchBarDelegate{
         self.dismiss(animated: true, completion: nil)
     }
    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-           cell.backgroundColor = .clear
-           cell.textLabel?.textColor = .lightGray
-    cell.selectionStyle = .gray
+            cell.backgroundColor = .clear
+            cell.textLabel?.textColor = .lightGray
+            cell.selectionStyle = .gray
        }
     
     // MARK: UISearchBAr Delegates Methods

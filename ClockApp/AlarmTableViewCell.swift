@@ -14,6 +14,7 @@ class AlarmTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var alarmLabel: UILabel!
+    @IBOutlet weak var alarmSwitch: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

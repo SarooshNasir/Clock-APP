@@ -22,6 +22,8 @@
 		6A64C61525416EAA00AEC145 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A64C61425416EAA00AEC145 /* RoundButton.swift */; };
 		6A66C0FE2542D27500805938 /* TimeZonesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66C0FD2542D27500805938 /* TimeZonesTableViewController.swift */; };
 		6A66C1002542D75900805938 /* WorldClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66C0FF2542D75900805938 /* WorldClockTableViewCell.swift */; };
+		6A691AC625498C8800177F08 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A691AC525498C8800177F08 /* BaseTabBarController.swift */; };
+		6A6D0DEF254AA957005BC257 /* BedTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D0DEE254AA957005BC257 /* BedTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		6A64C61425416EAA00AEC145 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		6A66C0FD2542D27500805938 /* TimeZonesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZonesTableViewController.swift; sourceTree = "<group>"; };
 		6A66C0FF2542D75900805938 /* WorldClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockTableViewCell.swift; sourceTree = "<group>"; };
+		6A691AC525498C8800177F08 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		6A6D0DEE254AA957005BC257 /* BedTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedTimeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				6A5B7873253EF80A005E86A4 /* ViewController.swift */,
 				6A64C61425416EAA00AEC145 /* RoundButton.swift */,
 				6A5B7875253EF80A005E86A4 /* Main.storyboard */,
+				6A6D0DEE254AA957005BC257 /* BedTimeViewController.swift */,
+				6A691AC525498C8800177F08 /* BaseTabBarController.swift */,
 				6A66C0FF2542D75900805938 /* WorldClockTableViewCell.swift */,
 				6A66C0FD2542D27500805938 /* TimeZonesTableViewController.swift */,
 				6A5B7893253F309D005E86A4 /* stopWatchViewController.swift */,
@@ -232,8 +238,10 @@
 				6A5B7870253EF80A005E86A4 /* AppDelegate.swift in Sources */,
 				6A631AE62547F8A300340C4C /* AlarmViewController.swift in Sources */,
 				6A631AEC2548142400340C4C /* AlarmTableViewCell.swift in Sources */,
+				6A691AC625498C8800177F08 /* BaseTabBarController.swift in Sources */,
 				6A5B7892253F1551005E86A4 /* clock.swift in Sources */,
 				6A5B7872253EF80A005E86A4 /* SceneDelegate.swift in Sources */,
+				6A6D0DEF254AA957005BC257 /* BedTimeViewController.swift in Sources */,
 				6A66C1002542D75900805938 /* WorldClockTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

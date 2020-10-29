@@ -10,7 +10,9 @@ import UIKit
 import UserNotifications
 
 protocol AlarmClockProtocol{
-    func addAlarmTimmings(time : String)
+    
+    //hello
+    func addAlarmTimmings(time : String , dateP :UIDatePicker)
 }
 class AddAlarmViewController: UIViewController{
 
@@ -22,21 +24,32 @@ class AddAlarmViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
         
 
         // Do any additional setup after loading the view.
     }
     func scheduleNotification() {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .none
+        formatter.dateFormat = "MMM d, h:mm a"
+        datePicker.datePickerMode = UIDatePicker.Mode.time
+        print(datePicker.date)
+        let date = formatter.string(from: datePicker.date)
         let content = UNMutableNotificationContent() 
-        content.title = "Alarm"
+        content.title = "Alarm Schedule"
         content.sound = UNNotificationSound.default
-
+        content.body = date
         let dateComponent = datePicker.calendar.dateComponents([.day, .hour, .minute], from: datePicker.date)
+        print(dateComponent)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
-
-        let notificationReq = UNNotificationRequest(identifier: "identifier", content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(notificationReq, withCompletionHandler: nil)
+        let uuidString = UUID().uuidString
+        let notificationReq = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(notificationReq,
+               withCompletionHandler: { (error) in
+                   
+           })
     }
 //    @IBAction func btn_Save(_ sender: Any) {
 //        scheduleNotification()
@@ -54,7 +67,7 @@ class AddAlarmViewController: UIViewController{
 //    }
     
     @IBAction func btn_save(_ sender: UIBarButtonItem) {
-               scheduleNotification()
+               //scheduleNotification()
                let formatter = DateFormatter()
                formatter.timeStyle = .medium
                formatter.dateStyle = .none
@@ -62,7 +75,7 @@ class AddAlarmViewController: UIViewController{
                datePicker.datePickerMode = UIDatePicker.Mode.time
                print(datePicker.date)
                let date = formatter.string(from: datePicker.date)
-               delegate?.addAlarmTimmings(time: date)
+        delegate?.addAlarmTimmings(time: date , dateP: datePicker)
                print(date)
                self.view.endEditing(true)
                self.dismiss(animated: true, completion: nil)

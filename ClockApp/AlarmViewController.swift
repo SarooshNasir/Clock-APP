@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource ,AlarmClockProtocol {
+class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource ,AlarmClockProtocol,BedTimeProtocol {
     
     
     
     var alarmdata :[String] = []
+    var selectedDate : UIDatePicker?
     @IBOutlet weak var tblView: UITableView!
     
     
@@ -23,10 +24,22 @@ class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         
         // Do any additional setup after loading the view.
     }
-    func addAlarmTimmings(time: String) {
-        alarmdata.append(time)
+    func addAlarmTimmings(time: String , dateP :UIDatePicker) {
+        tblView.reloadData()
+        alarmdata.insert(time, at: 0)
+
+        selectedDate = dateP
         tblView.reloadData()
     }
+    func addBedTimmings(time: String, dateP: UIDatePicker) {
+        tblView.reloadData()
+        alarmdata.insert(time, at: 0)
+        //alarmdata.append(time)
+        selectedDate = dateP
+        tblView.reloadData()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         alarmdata.count
     }
@@ -37,6 +50,9 @@ class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDa
         // cell.?.text = alarmdata[indexPath.row]
         //cell.alarmLabel.text = alarmdata[indexPath.row]
         cell.alarmLabel.text = alarmdata[indexPath.row]
+        cell.alarmSwitch.isOn = UserDefaults.standard.bool(forKey: "switchState")
+        cell.alarmSwitch.addTarget(self, action: #selector(presentNotification), for: UIControl.Event.valueChanged)
+
         print(alarmdata)
         
         // Configure the cell...
@@ -56,8 +72,44 @@ class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDa
             let destination = segue.destination as! AddAlarmViewController
             destination.delegate = self
         }
+        if segue.identifier == "BedAlarmSegue"{
+            let destination = segue.destination as! BedTimeViewController
+            destination.delegate = self
+        }
+//        if let vc = storyboard?.instantiateViewController(withIdentifier: "BedTimeViewController") as? BedTimeViewController{
+//            present(vc, animated: true, completion: nil)
+//            vc.delegate = self
+//        }
+        
+    }
+    
+    @objc func presentNotification() {
+        if let selected = selectedDate{
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .none
+            formatter.dateFormat = "MMM d, h:mm a"
+            let date = formatter.string(from: selected.date)
+            let content = UNMutableNotificationContent()
+            content.title = "Alarm Schedule"
+            content.sound = UNNotificationSound.default
+            content.body = date
+            let dateComponent = selected.calendar.dateComponents([.day, .hour, .minute], from:selected.date)
+                   print(dateComponent)
+                   let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+                    let uuidString = UUID().uuidString
+                    let notificationReq = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            
+                    UNUserNotificationCenter.current().add(notificationReq,
+                           withCompletionHandler: { (error) in
+                               
+                       })
+            
+        }
+
     }
 }
+
 //func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //       if segue.identifier == "alarmSegue"{
 //           let destination = segue.destination as! AddAlarmViewController
