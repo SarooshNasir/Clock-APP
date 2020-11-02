@@ -26,7 +26,7 @@ class WorldClockTableViewCell: UITableViewCell {
         
         if timeZoneName.text != "" {
             let formatter = DateFormatter()
-            formatter.timeStyle = .medium
+            formatter.timeStyle = .short
             formatter.timeZone = TimeZone(identifier: timeZoneName.text!)
             let timeNow = Date()
             timeString = formatter.string(from: timeNow)

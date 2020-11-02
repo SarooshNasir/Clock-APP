@@ -30,10 +30,8 @@ class stopWatchViewController: UIViewController ,UITableViewDelegate,UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.isHidden = true
         laps.isHidden = true
         reset.isHidden = true
-        dots.isHidden = true
         laps.isEnabled = false
 
         // Do any additional setup after loading the view.

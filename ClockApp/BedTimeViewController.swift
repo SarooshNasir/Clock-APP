@@ -28,19 +28,30 @@ class BedTimeViewController: UIViewController {
     }
     
     @IBAction func nextPress(_ sender: Any) {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
-//        self.present(newViewController, animated: true, completion: nil)
+        
+       // performSegue(withIdentifier: "BedAlarmSegue", sender: self)
+//        let formatter = DateFormatter()
+//        formatter.timeStyle = .medium
+//        formatter.dateStyle = .none
+//        formatter.dateFormat = "MMM d, h:mm a"
+//        bedTimeDatePicker.datePickerMode = UIDatePicker.Mode.time
+//         let date = formatter.string(from: bedTimeDatePicker.date)
+//        //delegate?.addBedTimmings(time: date, dateP: bedTimeDatePicker)
+//        self.view.endEditing(true)
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .none
-        formatter.dateFormat = "MMM d, h:mm a"
+        formatter.dateFormat = "h:mm a"
         bedTimeDatePicker.datePickerMode = UIDatePicker.Mode.time
          let date = formatter.string(from: bedTimeDatePicker.date)
-        delegate?.addBedTimmings(time: date, dateP: bedTimeDatePicker)
+        print(date)
         self.view.endEditing(true)
-
-        
+        newViewController.date = date
+        newViewController.datePicker = bedTimeDatePicker
+        self.present(newViewController, animated: true, completion: nil)
 
     }
     

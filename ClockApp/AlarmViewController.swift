@@ -8,36 +8,43 @@
 
 import UIKit
 
-class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource ,AlarmClockProtocol,BedTimeProtocol {
+class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource ,AlarmClockProtocol{
     
+    var date: String?
+    var datePicker: UIDatePicker?
     
     
     var alarmdata :[String] = []
     var selectedDate : UIDatePicker?
     @IBOutlet weak var tblView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblView.dataSource = self
         tblView.delegate = self
+        if let cdate = date {
+          alarmdata.insert(cdate, at: 0)
+        }
+        selectedDate = datePicker
+        tblView.reloadData()
+        
+
         
         // Do any additional setup after loading the view.
     }
     func addAlarmTimmings(time: String , dateP :UIDatePicker) {
         tblView.reloadData()
         alarmdata.insert(time, at: 0)
-
         selectedDate = dateP
         tblView.reloadData()
     }
-    func addBedTimmings(time: String, dateP: UIDatePicker) {
-        tblView.reloadData()
-        alarmdata.insert(time, at: 0)
-        //alarmdata.append(time)
-        selectedDate = dateP
-        tblView.reloadData()
-    }
+//    func addBedTimmings(time: String, dateP: UIDatePicker) {
+//        tblView.reloadData()
+//        alarmdata.insert(time, at: 0)
+//        print(time , dateP)
+//        selectedDate = dateP
+//        tblView.reloadData()
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,13 +79,10 @@ class AlarmViewController: UIViewController ,UITableViewDelegate , UITableViewDa
             let destination = segue.destination as! AddAlarmViewController
             destination.delegate = self
         }
-        if segue.identifier == "BedAlarmSegue"{
-            let destination = segue.destination as! BedTimeViewController
-            destination.delegate = self
-        }
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "BedTimeViewController") as? BedTimeViewController{
-//            present(vc, animated: true, completion: nil)
-//            vc.delegate = self
+//        else if (segue.identifier == "BedAlarmSegue"){
+//        let alarmViewController = segue.destination as! BedTimeViewController
+//            alarmViewController.delegate = self
+//
 //        }
         
     }

@@ -33,7 +33,7 @@ class AddAlarmViewController: UIViewController{
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .none
-        formatter.dateFormat = "MMM d, h:mm a"
+        formatter.dateFormat = "h:mm a"
         datePicker.datePickerMode = UIDatePicker.Mode.time
         print(datePicker.date)
         let date = formatter.string(from: datePicker.date)
@@ -75,7 +75,7 @@ class AddAlarmViewController: UIViewController{
                datePicker.datePickerMode = UIDatePicker.Mode.time
                print(datePicker.date)
                let date = formatter.string(from: datePicker.date)
-        delegate?.addAlarmTimmings(time: date , dateP: datePicker)
+               delegate?.addAlarmTimmings(time: date , dateP: datePicker)
                print(date)
                self.view.endEditing(true)
                self.dismiss(animated: true, completion: nil)
